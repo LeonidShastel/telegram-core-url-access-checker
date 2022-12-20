@@ -12,7 +12,9 @@ namespace telegram_proxy_request
         {
             TelegramBotClient botClient = new TelegramBotClient("5444371933:AAGaeeVKZeGlkmMQo1ENEI0XKP_m6eGCCSU");
             botClient.StartReceiving(Update, Error);
-            Listener.Start(botClient);
+            Console.WriteLine("Bot started");
+            new Thread(() => Listener.Start(botClient)).Start();
+            Console.WriteLine("Listener started");
             Console.ReadLine();
         }
 

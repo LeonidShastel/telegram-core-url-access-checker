@@ -37,7 +37,7 @@ namespace telegram_proxy_request
 
                 return true;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return false;
             }
