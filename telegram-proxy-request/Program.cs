@@ -9,7 +9,7 @@ namespace telegram_proxy_request
     {
         static async Task<int> Main(string[] args)
         {
-            TelegramBotClient botClient = new TelegramBotClient("5444371933:AAGaeeVKZeGlkmMQo1ENEI0XKP_m6eGCCSU");
+            TelegramBotClient botClient = new TelegramBotClient("5744846835:AAG94pBVCmBMky_6Kv39gYfh6LHNesg1TSU");
             var me = await botClient.GetMeAsync();
             Console.WriteLine($"Hello, World! I am bot {me.Id} and my name is {me.FirstName}.");
             botClient.StartReceiving(Update, Error);
