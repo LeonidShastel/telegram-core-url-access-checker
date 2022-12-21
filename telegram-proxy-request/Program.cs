@@ -49,11 +49,14 @@ namespace telegram_proxy_request
                     return;
                 }
 
+
                 UrlElement element = new UrlElement(
                         messageInfo[1],
                         new Proxy(proxy[0], proxy[1], proxy[2], proxy[3]),
                         message.Chat.Id
                     );
+
+                await botClient.SendTextMessageAsync(element.ChatId, $"Дождитесь первиночной проверке {element.Url}", null, null, null);
 
                 if (await UrlChecker.SendRequest(element))
                 {
