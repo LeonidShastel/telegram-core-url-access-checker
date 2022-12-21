@@ -2,20 +2,22 @@
 
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using telegram_proxy_request;
 
 namespace telegram_proxy_request
 {
     public class Program
     {
-        static void Main(string[] args)
+        static async Task<int> Main(string[] args)
         {
             TelegramBotClient botClient = new TelegramBotClient("5444371933:AAGaeeVKZeGlkmMQo1ENEI0XKP_m6eGCCSU");
+            var me = await botClient.GetMeAsync();
+            Console.WriteLine($"Hello, World! I am bot {me.Id} and my name is {me.FirstName}.");
             botClient.StartReceiving(Update, Error);
             Console.WriteLine("Bot started");
             new Thread(() => Listener.Start(botClient)).Start();
             Console.WriteLine("Listener started");
             Console.ReadLine();
+            return 0;
         }
 
         private static Task Error(ITelegramBotClient arg1, Exception arg2, CancellationToken arg3)
