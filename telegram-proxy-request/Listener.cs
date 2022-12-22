@@ -51,7 +51,7 @@ namespace telegram_proxy_request
                 }
                 finally 
                 {
-                    Thread.Sleep(3600000);
+                    Thread.Sleep(60000);
                 }
             }
         }
