@@ -16,9 +16,9 @@ namespace telegram_proxy_request
             {
                 try
                 {
-                    bool send = false;        
-                    if(DateTime.Now.Hour == 12)
-                        send = true;
+                    bool send = true;        
+                    //if(DateTime.Now.Hour == 19)
+                    //    send = true;
                     foreach(UrlElement urlElement in urlsElements)
                     {
                         bool result = await UrlChecker.SendRequest(urlElement);
@@ -40,6 +40,9 @@ namespace telegram_proxy_request
                             }
                             catch(Exception ex) { Console.WriteLine(ex.Message); }
                         }
+
+
+                        Console.WriteLine($"{DateTime.Now.Hour} : {urlElement.Url} : {send}: {result}");
                     }
                 }
                 catch (Exception ex)
