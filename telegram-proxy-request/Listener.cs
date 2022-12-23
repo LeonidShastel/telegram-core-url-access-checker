@@ -16,7 +16,7 @@ namespace telegram_proxy_request
             {
                 try
                 {
-                    bool send = true;
+                    bool send = false;
                     if (DateTime.Now.Hour == 12)
                         send = true;
                     foreach (UrlElement urlElement in urlsElements)
