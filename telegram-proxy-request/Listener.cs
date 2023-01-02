@@ -19,6 +19,9 @@ namespace telegram_proxy_request
                     bool send = false;
                     if (DateTime.Now.Hour == 12)
                         send = true;
+
+                    List<UrlElement> elements = new List<UrlElement>();
+
                     foreach (UrlElement urlElement in urlsElements)
                     {
                         bool result = await UrlChecker.SendRequest(urlElement);
@@ -28,7 +31,7 @@ namespace telegram_proxy_request
                             try
                             {
                                 await client.SendTextMessageAsync(urlElement.ChatId, $"Сайт {urlElement.Url} заблокирован");
-                                urlsElements.Remove(urlElement);
+                                //urlsElements.Remove(urlElement);
                             }
                             catch(Exception ex) { Console.WriteLine(ex.Message); }
                         }
@@ -40,9 +43,13 @@ namespace telegram_proxy_request
                             }
                             catch(Exception ex) { Console.WriteLine(ex.Message); }
                         }
+                        
+                        if(result)
+                            elements.Add(urlElement);
 
                         Console.WriteLine($"{DateTime.Now.Hour} : {urlElement.Url} : {send}: {result}");
                     }
+                    urlsElements = elements;
                 }
                 catch (Exception ex)
                 {
