@@ -22,7 +22,7 @@ namespace telegram_proxy_request
 
                     List<UrlElement> elements = new List<UrlElement>();
 
-                    foreach (UrlElement urlElement in urlsElements)
+                    foreach (UrlElement urlElement in urlsElements.ToList())
                     {
                         bool result = await UrlChecker.SendRequest(urlElement);
 
@@ -49,7 +49,7 @@ namespace telegram_proxy_request
 
                         Console.WriteLine($"{DateTime.Now.Hour} : {urlElement.Url} : {send}: {result}");
                     }
-                    urlsElements = elements;
+                    urlsElements = elements.ToList();
                 }
                 catch (Exception ex)
                 {
